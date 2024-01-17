@@ -1,95 +1,78 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import {
+  Biography,
+  EmailForm,
+  Header,
+  ImageCarousel,
+  SpotifySection,
+  VideoGrid,
+} from "./components";
+import { Thumbnails, Entry } from "./types";
+import styles from "./page.module.css";
+const contentful = require("contentful");
 
-export default function Home() {
+const contentfulClient = contentful.createClient({
+  space: process.env.CONTENTFUL_SPACE_ID,
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+});
+
+const fetchCarouselImages = async (): Promise<Entry> => {
+  const entries = await contentfulClient.getEntries();
+  if (entries) {
+    const carouselImages = entries.items.find(
+      (item: Entry) => item.fields.name === "instruments"
+    );
+    if (carouselImages) {
+      return carouselImages;
+    } else {
+      throw new Error("Carousel images entry not found");
+    }
+  } else {
+    throw new Error("Failed to fetch entries");
+  }
+};
+const fetchBiography = async () => {
+  const entries = await contentfulClient.getEntries();
+  if (entries) {
+    const biography = entries.items.find(
+      (item: any) => item.fields.name === "biography"
+    );
+    return biography;
+  } else {
+    return {};
+  }
+};
+const fetchThumbnails = async (): Promise<Thumbnails> => {
+  const entries = await contentfulClient.getEntries();
+  if (entries) {
+    const thumbnailsEntry = entries.items.find(
+      (item: Thumbnails) => item.fields.name === "thumbnails"
+    );
+    if (thumbnailsEntry) {
+      return thumbnailsEntry;
+    } else {
+      throw new Error("Thumbnails entry not found");
+    }
+  } else {
+    throw new Error("Failed to fetch entries");
+  }
+};
+
+export default async function Home() {
+  const carouselImages = await fetchCarouselImages();
+  const biography = await fetchBiography();
+  const thumbnails = await fetchThumbnails();
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+      <div className={styles.header}>
+        <ImageCarousel {...carouselImages} />
+        <Header />
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div className={styles.pageContent}>
+        <Biography bio={biography} />
+        <VideoGrid {...thumbnails} />
+        <SpotifySection />
+        <EmailForm />
       </div>
     </main>
-  )
+  );
 }
