@@ -13,9 +13,6 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        {/* <button className={styles.closeButton} onClick={onClose}>
-          Close
-        </button> */}
         {children}
       </div>
     </div>

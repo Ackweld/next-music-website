@@ -47,7 +47,7 @@ export const EmailForm = () => {
 
   return (
     <form className={styles.emailForm} onSubmit={handleSubmit}>
-      <label>Contact me</label>
+      <p>Contact me</p>
       <label>
         Name:
         <input

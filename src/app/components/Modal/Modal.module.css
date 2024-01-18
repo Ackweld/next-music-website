@@ -19,4 +19,23 @@
     position: absolute;
   }
 
+  @media (max-width: 850px) {
+    .modal {
+      position: absolute;
+      scale: 70%;
+    }
+}
+  @media (max-width: 610px) {
+    .modal {
+      position: absolute;
+      scale: 60%;
+    }
+}
+  @media (max-width: 550px) {
+    .modal {
+      position: absolute;
+      scale: 45%;
+    }
+}
+
   

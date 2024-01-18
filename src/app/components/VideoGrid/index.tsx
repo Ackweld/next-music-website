@@ -12,16 +12,6 @@ export const VideoGrid: React.FC<Thumbnails> = ({ fields }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [videoLink, setVideoLink] = useState<string>("");
 
-  //   useEffect(() => {
-  //     const getThumbnails = async () => {
-  //       const thumbnailsEntry = await ApiService.getEntry("thumbnails");
-  //       if (thumbnailsEntry) {
-  //         setThumbnails(thumbnailsEntry.fields.videos);
-  //       }
-  //     };
-  //     getThumbnails();
-  //   }, []);
-
   const openModal = (videoLink: string) => {
     setVideoLink(videoLink);
     setIsModalOpen(true);

@@ -5,9 +5,12 @@
     flex-direction: column;
     background-color: rgb(29, 28, 28);
     padding: 40px;
-    margin: 30px;
+    /* margin: 30px; */
 }
 
+.emailForm p {
+    font-size: 30px;
+}
 .emailForm label {
     display: flex;
     flex-direction: column;
