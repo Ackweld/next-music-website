@@ -8,6 +8,7 @@ export const EmailForm = () => {
     email: "",
     message: "",
   });
+  const [sentMessage, setSentMessage] = useState(false);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -15,6 +16,10 @@ export const EmailForm = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const handleOnFocus = () => {
+    setSentMessage(false);
   };
 
   async function handleSubmit(event: any) {
@@ -32,8 +37,8 @@ export const EmailForm = () => {
       }
       const responseData = await response.json();
       console.log(responseData["message"]);
-
-      alert("Message successfully sent");
+      setFormData({ name: "", email: "", message: "" });
+      setSentMessage(true);
     } catch (err) {
       console.error(err);
       alert("Error, please try resubmitting the form");
@@ -50,6 +55,7 @@ export const EmailForm = () => {
           name="name"
           value={formData.name}
           onChange={handleChange}
+          onFocus={handleOnFocus}
           required
         />
       </label>
@@ -60,6 +66,7 @@ export const EmailForm = () => {
           name="email"
           value={formData.email}
           onChange={handleChange}
+          onFocus={handleOnFocus}
           required
         />
       </label>
@@ -69,10 +76,16 @@ export const EmailForm = () => {
           name="message"
           value={formData.message}
           onChange={handleChange}
+          onFocus={handleOnFocus}
           required
         />
       </label>
-      <button type="submit">SUBMIT</button>
+      <div className={styles.horizontalContainer}>
+        <button type="submit">SUBMIT</button>
+        {sentMessage && (
+          <p className={styles.sentMessageLabel}>Your message was sent</p>
+        )}
+      </div>
     </form>
   );
 };

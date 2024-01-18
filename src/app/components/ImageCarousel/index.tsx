@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Entry } from "../../types";
 import styles from "./ImageCarousel.module.css";
 import Image from "next/image";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 export const ImageCarousel: React.FC<Entry> = ({ fields }) => {
   const { images } = fields;
@@ -33,8 +34,7 @@ export const ImageCarousel: React.FC<Entry> = ({ fields }) => {
         className={`${styles.arrowButton} ${styles.left}`}
         onClick={goToPrevSlide}
       >
-        {/* Replace this with better arrows */}
-        &#9665;
+        <FaArrowLeft />
       </button>
       <Image
         src={`https:${images[currentIndex].fields.file.url}`}
@@ -48,7 +48,7 @@ export const ImageCarousel: React.FC<Entry> = ({ fields }) => {
         className={`${styles.arrowButton} ${styles.right}`}
         onClick={goToNextSlide}
       >
-        &#9655;
+        <FaArrowRight />
       </button>
     </div>
   );

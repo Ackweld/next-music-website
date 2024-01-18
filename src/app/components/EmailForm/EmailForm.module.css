@@ -16,11 +16,42 @@
 }
 .emailForm input {
     height: 30px;
+    padding: 10px;
 }
 .emailForm textarea {
-    height: 180px
+    display: flex;
+    width: 100%;
+    height: 180px;
+    resize: none;
+    padding: 10px;
+}
+
+.horizontalContainer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* justify-content: space-between; */
 }
 .emailForm button {
+    display: flex;
     height: 30px;
     max-width: fit-content;    
+    color: white;
+    background-color: rgb(99, 99, 99);
+    border: none;
+    padding: 10px;
+    align-items: center;
+}
+.emailForm button:hover { 
+    cursor: pointer;
+    color: white;
+    background-color: rgb(89, 89, 89);
+}
+.emailForm button:active { 
+    scale: 90%;
+}
+
+.sentMessageLabel {
+    font-style:italic;
+    margin: 0px;
 }

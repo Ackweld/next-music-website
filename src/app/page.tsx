@@ -8,6 +8,7 @@ import {
 } from "./components";
 import { Thumbnails, Entry } from "./types";
 import styles from "./page.module.css";
+import { Footer } from "./components/Footer";
 const contentful = require("contentful");
 
 const contentfulClient = contentful.createClient({
@@ -73,6 +74,7 @@ export default async function Home() {
         <SpotifySection />
         <EmailForm />
       </div>
+      <Footer />
     </main>
   );
 }
