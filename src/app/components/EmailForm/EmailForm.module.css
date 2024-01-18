@@ -4,11 +4,11 @@
     display: flex;
     flex-direction: column;
     background-color: rgb(29, 28, 28);
-    padding: 40px;
+    padding: 20px;
     /* margin: 30px; */
 }
 
-.emailForm p {
+.contact {
     font-size: 30px;
 }
 .emailForm label {
@@ -57,4 +57,11 @@
 .sentMessageLabel {
     font-style:italic;
     margin: 0px;
+    font-size: medium;
+}
+
+@media (max-width: 430px) {
+    .sentMessageLabel {
+        font-size: small;
+    }
 }
