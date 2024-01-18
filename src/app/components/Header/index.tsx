@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./Header.module.css";
 
 export const Header = () => {
@@ -6,8 +7,12 @@ export const Header = () => {
       <label>Home</label>
       <label>My work</label>
       <label>Contact me</label>
-      <label>Downloads</label>
-      <label>My services</label>
+      <Link href="/downloads" className={styles.link}>
+        Downloads
+      </Link>
+      <Link href="/services" className={styles.link}>
+        My Services
+      </Link>
     </header>
   );
 };

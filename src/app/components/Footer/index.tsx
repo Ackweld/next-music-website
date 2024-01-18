@@ -1,4 +1,5 @@
 import { SocialIcon } from "react-social-icons";
+import { SiBandcamp } from "react-icons/si";
 import styles from "./Footer.module.css";
 
 export const Footer = () => {
@@ -11,6 +12,10 @@ export const Footer = () => {
         fgColor="white"
         className={styles.icon}
       />
+      <a href="https://wunjan.bandcamp.com/">
+        <SiBandcamp className={`${styles.icon} ${styles.bandcamp}`} />
+      </a>
+
       <SocialIcon
         href="https://soundcloud.com/wunjan"
         url="www.soundcloud.com"

@@ -10,6 +10,21 @@
     color: white;
     font-size: medium;
 }
+.link {
+    margin: 20px;
+    color: white;
+    font-size: medium;
+    text-decoration: none;
+}
+
+.link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.link:active {
+    scale: 95%;
+}
+
 .header label:hover {
     cursor: pointer;
     text-decoration: underline;

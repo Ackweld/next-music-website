@@ -7,6 +7,17 @@
     margin-top: 30px;
 }
 
+.footer a {
+    display: flex;
+    align-items: center;
+}
+
+.bandcamp {
+    color: white;
+    margin: 12px;
+    width: 20px;
+    height: 20px;
+}
 .icon {
     transition: scale 0.3s ease;
 }
