@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 
+import { Header, ImageCarousel, Footer } from "./components";
+import { ApiService } from "@/services/ApiService";
+
 const poppins = Poppins({
   weight: ["400", "700"],
   style: ["normal", "italic"],
@@ -15,14 +18,21 @@ export const metadata: Metadata = {
     "Explore the creative works of Wunjan, get in touch or download audio content",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const carouselImages = await ApiService.getData("carousel");
+
   return (
     <html lang="en">
-      <body className={poppins.className}>{children}</body>
+      <body className={poppins.className}>
+        <ImageCarousel {...carouselImages} />
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

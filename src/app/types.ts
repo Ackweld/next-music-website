@@ -21,3 +21,30 @@ export type Video = {
 export type Thumbnails = {
   fields: { name: string; videos: Video[] };
 };
+
+export type Biography = {
+  fields: {
+    name: string;
+    profilePicture: ImageAsset;
+    text: {
+      content: [
+        {
+          nodeType: "string";
+          content: [
+            {
+              value: string;
+            }
+          ];
+        },
+        {
+          content: [
+            {
+              nodeType: "string";
+              value: string;
+            }
+          ];
+        }
+      ];
+    };
+  };
+};
