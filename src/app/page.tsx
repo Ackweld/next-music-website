@@ -1,5 +1,5 @@
 import { Biography, EmailForm, SpotifySection, VideoGrid } from "./components";
-import { ApiService } from "@/services/ApiService";
+import { ApiService } from "@/app/services/ApiService";
 import styles from "./page.module.css";
 
 export default async function Home() {

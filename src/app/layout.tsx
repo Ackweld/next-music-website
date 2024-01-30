@@ -3,7 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 
 import { Header, ImageCarousel, Footer } from "./components";
-import { ApiService } from "@/services/ApiService";
+import { ApiService } from "@/app/services/ApiService";
 
 const poppins = Poppins({
   weight: ["400", "700"],
