@@ -28,12 +28,12 @@ export default async function RootLayout({
     return null;
   }
 
-  // const carouselImages = await ApiService.getData("carousel");
+  const carouselImages = await ApiService.getData("carousel");
 
   return (
     <html lang="en">
       <body className={poppins.className}>
-        {/* <ImageCarousel {...carouselImages} /> */}
+        {carouselImages && <ImageCarousel {...carouselImages} />}
         <Header />
         {children}
         <Footer />
