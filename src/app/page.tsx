@@ -1,8 +1,13 @@
 import { Biography, EmailForm, SpotifySection, VideoGrid } from "./components";
 import { ApiService } from "@/app/services/ApiService";
 import styles from "./page.module.css";
+import { BASE_API_URL } from "./lib/constants";
 
 export default async function Home() {
+  if (!BASE_API_URL) {
+    return null;
+  }
+
   const biography = await ApiService.getData("biography");
   const thumbnails = await ApiService.getData("thumbnails");
 
