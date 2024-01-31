@@ -48,8 +48,9 @@
 
 @media (max-width: 970px) {
     .header {
-        overflow: auto;    
-        max-width: 100vw;
+        overflow-x: auto;    
+        width: 100%;
+        justify-content: normal;
         scrollbar-width: 5px;
         scrollbar-color: #555 #333;
         padding-left: 20px;
