@@ -3,14 +3,21 @@
 import styles from "./VideoGrid.module.css";
 import { useEffect, useState } from "react";
 import { Thumbnails, Video } from "@/app/types";
-// import Modal from "./Modal/Modal";
 import { Modal } from "../../components";
+import { ApiService } from "@/app/services/ApiService";
 
-export const VideoGrid: React.FC<Thumbnails> = ({ fields }) => {
-  const { name, videos } = fields;
-  // const [thumbnails, setThumbnails] = useState<Video[]>();
+export const VideoGrid = () => {
+  const [thumbnails, setThumbnails] = useState<Thumbnails>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [videoLink, setVideoLink] = useState<string>("");
+
+  useEffect(() => {
+    const getThumbnails = async () => {
+      const thumbnails = await ApiService.getData("thumbnails");
+      setThumbnails(thumbnails);
+    };
+    getThumbnails();
+  }, []);
 
   const openModal = (videoLink: string) => {
     setVideoLink(videoLink);
@@ -21,10 +28,10 @@ export const VideoGrid: React.FC<Thumbnails> = ({ fields }) => {
     setIsModalOpen(false);
   };
 
-  if (fields) {
+  if (thumbnails) {
     return (
       <div className={styles.videoGrid}>
-        {videos.map((thumbnail: Video, index: number) => (
+        {thumbnails.fields.videos.map((thumbnail: Video, index: number) => (
           <img
             src={`https:${thumbnail.fields.thumbnail.fields.file.url}`}
             alt={`${thumbnail.fields.thumbnail.fields.title}`}

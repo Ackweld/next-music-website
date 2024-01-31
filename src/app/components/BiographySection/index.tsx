@@ -1,20 +1,23 @@
 "use client";
 
-// import Image from "next/image";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { Document } from "@contentful/rich-text-types";
 
 import styles from "./Biography.module.css";
 import { useEffect, useState } from "react";
+import { ApiService } from "@/app/services/ApiService";
+import { Biography } from "@/app/types";
 
-interface IBiography {
-  fields: {
-    profilePicture: { fields: { file: { url: string }; name: string } };
-    text: Document; //TODO: Hopefully this is right? Maybe some html-type thing instead
-  };
-}
+export const BiographySection = () => {
+  const [bio, setBio] = useState<Biography>();
 
-export const Biography: React.FC<any> = ({ bio }) => {
+  useEffect(() => {
+    const getBio = async () => {
+      const biography = await ApiService.getData("biography");
+      setBio(biography);
+    };
+    getBio();
+  }, []);
+
   if (bio) {
     return (
       <div className={styles.card}>

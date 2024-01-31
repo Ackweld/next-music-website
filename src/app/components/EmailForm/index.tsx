@@ -26,13 +26,10 @@ export const EmailForm = () => {
     event.preventDefault();
     const formData = new FormData(event.target);
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_SITE_URL}/api/contact`,
-        {
-          method: "post",
-          body: formData,
-        }
-      );
+      const response = await fetch("/api/contact", {
+        method: "post",
+        body: formData,
+      });
 
       if (!response.ok) {
         console.log("falling over");

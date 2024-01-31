@@ -3,7 +3,6 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 
 import { Header, ImageCarousel, Footer } from "./components";
-import { ApiService } from "@/app/services/ApiService";
 
 const poppins = Poppins({
   weight: ["400", "700"],
@@ -18,17 +17,15 @@ export const metadata: Metadata = {
     "Explore the creative works of Wunjan, get in touch or download audio content",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const carouselImages = await ApiService.getData("carousel");
-
   return (
     <html lang="en">
       <body className={poppins.className}>
-        {carouselImages && <ImageCarousel {...carouselImages} />}
+        <ImageCarousel />
         <Header />
         {children}
         <Footer />

@@ -1,5 +1,7 @@
+import { Document } from "@contentful/rich-text-types";
+
 export type ImageAsset = {
-  fields: { file: { url: string } };
+  fields: { name: string; file: { url: string } };
 };
 export type Entry = {
   fields: { name: string; images: ImageAsset[] };
@@ -26,25 +28,6 @@ export type Biography = {
   fields: {
     name: string;
     profilePicture: ImageAsset;
-    text: {
-      content: [
-        {
-          nodeType: "string";
-          content: [
-            {
-              value: string;
-            }
-          ];
-        },
-        {
-          content: [
-            {
-              nodeType: "string";
-              value: string;
-            }
-          ];
-        }
-      ];
-    };
+    text: Document;
   };
 };
