@@ -24,10 +24,12 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  if (!BASE_API_URL) {
+  // if (!BASE_API_URL) {
+  //   return null;
+  // }
+  if (process.env.VERCEL_ENV === "preview") {
     return null;
   }
-
   const carouselImages = await ApiService.getData("carousel");
 
   return (
