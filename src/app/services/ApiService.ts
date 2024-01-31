@@ -1,10 +1,17 @@
-import { BASE_API_URL } from "../lib/constants";
-
 export const ApiService = {
   getData: async (endpoint: string) => {
-    const response = await fetch(`${BASE_API_URL}/api/contentful/${endpoint}`, {
-      headers: { Accept: "application/json", method: "GET" },
-    });
+    if (process.env.NODE_ENV === "production") {
+      // Placeholder data for the build stage
+      return { placeholderData: {} };
+    }
+
+    // Fetch the actual data during runtime
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SITE_URL}/api/contentful/${endpoint}`,
+      {
+        headers: { Accept: "application/json", method: "GET" },
+      }
+    );
 
     return response.json();
   },

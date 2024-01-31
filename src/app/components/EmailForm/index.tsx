@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { BASE_API_URL } from "@/app/lib/constants";
 import styles from "./EmailForm.module.css";
 
 export const EmailForm = () => {
@@ -27,10 +26,13 @@ export const EmailForm = () => {
     event.preventDefault();
     const formData = new FormData(event.target);
     try {
-      const response = await fetch(`${BASE_API_URL}/api/contact`, {
-        method: "post",
-        body: formData,
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SITE_URL}/api/contact`,
+        {
+          method: "post",
+          body: formData,
+        }
+      );
 
       if (!response.ok) {
         console.log("falling over");
