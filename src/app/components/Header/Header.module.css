@@ -46,7 +46,7 @@
     background-color: transparent; 
   }
 
-@media (max-width: 970px) {
+@media (max-width: 600px) {
     .header {
         overflow-x: auto;    
         width: 100%;

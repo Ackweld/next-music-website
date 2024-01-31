@@ -23,7 +23,7 @@
 }
 .icon:hover {
     cursor: pointer;
-    scale: 110%;
+    opacity: 20%;
 }
 .icon:active {
     scale: 95%;

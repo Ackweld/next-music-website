@@ -1,22 +1,29 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Entry, ImageAsset } from "../../types";
-import styles from "./ImageCarousel.module.css";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Image from "next/image";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { ApiService } from "@/app/services/ApiService";
+import { ImageAsset } from "../../types";
+import styles from "./ImageCarousel.module.css";
 
-// export const ImageCarousel: React.FC<Entry> = ({ fields }) => {
-// const { images } = fields;
 export const ImageCarousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [images, setImages] = useState<ImageAsset[]>();
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [images, setImages] = useState<ImageAsset[] | undefined>(undefined);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const getImages = async () => {
-      const carouselImages = await ApiService.getData("carousel");
-      setImages(carouselImages.fields.images);
+      try {
+        const carouselImages = await ApiService.getData("carousel");
+        setImages(carouselImages.fields.images);
+        setLoading(false);
+      } catch (error) {
+        setError(true);
+        setLoading(false);
+        console.error("Error fetching carousel images:", error);
+      }
     };
     getImages();
   }, []);
@@ -25,50 +32,51 @@ export const ImageCarousel = () => {
     const intervalId = setInterval(goToNextSlide, 5000);
 
     return () => clearInterval(intervalId);
-  }, [currentIndex]);
+  }, [activeIndex, images]);
 
   const goToPrevSlide = () => {
-    if (images) {
-      setCurrentIndex((prevIndex) =>
-        prevIndex === 0 ? images.length - 1 : prevIndex - 1
-      );
-    }
+    setActiveIndex((prevIndex) =>
+      prevIndex === 0 ? (images?.length || 0) - 1 : prevIndex - 1
+    );
   };
 
   const goToNextSlide = () => {
-    if (images) {
-      setCurrentIndex((prevIndex) =>
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
-      );
-    }
+    setActiveIndex((prevIndex) =>
+      prevIndex === (images?.length || 0) - 1 ? 0 : prevIndex + 1
+    );
   };
 
-  if (images) {
-    return (
-      <div className={styles.imageCarouselContainer}>
-        <button
-          className={`${styles.arrowButton} ${styles.left}`}
-          onClick={goToPrevSlide}
-        >
-          <FaArrowLeft />
-        </button>
-        <Image
-          src={`https:${images[currentIndex].fields.file.url}`}
-          alt={`Slide ${currentIndex + 1}`}
-          width={0}
-          height={0}
-          sizes="100vw"
-          className={styles.carouselItem}
-        />
-        <button
-          className={`${styles.arrowButton} ${styles.right}`}
-          onClick={goToNextSlide}
-        >
-          <FaArrowRight />
-        </button>
-      </div>
-    );
-  } else {
-    return <div className={styles.imageCarouselContainer}></div>;
+  if (loading) {
+    return <div>Loading...</div>;
   }
+
+  if (error || !images) {
+    return <div>Error loading carousel images.</div>;
+  }
+
+  return (
+    <div className={styles.imageCarouselContainer}>
+      <button
+        className={`${styles.arrowButton} ${styles.left}`}
+        onClick={goToPrevSlide}
+      >
+        <FaArrowLeft />
+      </button>
+      <Image
+        src={`https:${images[activeIndex].fields.file.url}`}
+        alt={`Slide ${activeIndex + 1}`}
+        width={0}
+        height={0}
+        sizes="100vw"
+        className={styles.carouselItem}
+        key={activeIndex}
+      />
+      <button
+        className={`${styles.arrowButton} ${styles.right}`}
+        onClick={goToNextSlide}
+      >
+        <FaArrowRight />
+      </button>
+    </div>
+  );
 };
