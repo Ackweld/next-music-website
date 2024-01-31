@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { BASE_API_URL } from "@/app/lib/constants";
 import styles from "./EmailForm.module.css";
 
 export const EmailForm = () => {
@@ -26,7 +27,7 @@ export const EmailForm = () => {
     event.preventDefault();
     const formData = new FormData(event.target);
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(`${BASE_API_URL}/api/contact`, {
         method: "post",
         body: formData,
       });

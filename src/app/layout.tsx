@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { Header, ImageCarousel, Footer } from "./components";
 import { ApiService } from "@/app/services/ApiService";
+import { BASE_API_URL } from "./lib/constants";
 
 const poppins = Poppins({
   weight: ["400", "700"],
@@ -23,6 +24,10 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  if (!BASE_API_URL) {
+    return null;
+  }
+
   const carouselImages = await ApiService.getData("carousel");
 
   return (
