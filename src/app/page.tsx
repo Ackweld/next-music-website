@@ -8,14 +8,14 @@ export default async function Home() {
     return null;
   }
 
-  const biography = await ApiService.getData("biography");
-  const thumbnails = await ApiService.getData("thumbnails");
+  // const biography = await ApiService.getData("biography");
+  // const thumbnails = await ApiService.getData("thumbnails");
 
   return (
     <main className={styles.main}>
       <div className={styles.pageContent}>
-        <Biography bio={biography} />
-        <VideoGrid {...thumbnails} />
+        {/* <Biography bio={biography} /> */}
+        {/* <VideoGrid {...thumbnails} /> */}
         <SpotifySection />
         <EmailForm />
       </div>
