@@ -2,7 +2,7 @@ export const ApiService = {
   getData: async (endpoint: string) => {
     if (process.env.NODE_ENV === "production") {
       // Placeholder data for the build stage
-      return { placeholderData: {} };
+      return null;
     }
 
     // Fetch the actual data during runtime
