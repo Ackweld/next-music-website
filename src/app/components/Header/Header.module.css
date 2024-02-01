@@ -2,7 +2,14 @@
     display: flex;
     width: 100%;
     justify-content: center;
-    background-color: rgb(26, 26, 26);
+    /* background-color: rgb(26, 26, 26); */
+    background-color: transparent;
+
+    position: absolute; 
+    bottom: 0;
+    left: 0; 
+    right: 0; 
+    z-index: 1;
 }
 
 .header label {

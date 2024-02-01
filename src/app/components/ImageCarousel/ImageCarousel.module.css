@@ -1,32 +1,28 @@
-.imageCarouselContainer {
-    position: relative;
-    display: inline-block;
-    display: flex;
-}
-  
-.arrowButton {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: 20px;
-    margin-right: 20px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: rgb(218, 218, 218);
-    font-size: 40px;
-}
-  
-.left {
-    left: 0;
-}
-  
-.right {
-    right: 0;
-}
-
-.carouselItem {
+.carousel {
     width: 100vw;
     height: 30vh;
-    object-fit:cover;
-}
+    position: relative;
+  }
+  
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: 300ms opacity ease-in-out;
+  }
+  
+  .slide > img {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: 300ms opacity ease-in-out;
+  }
+  
+  .active {
+    position: absolute;
+    opacity: 1;
+    z-index: 1;
+  }

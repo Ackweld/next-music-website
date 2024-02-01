@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 
-import { Header, ImageCarousel, Footer } from "./components";
+import { Footer, HeroBanner } from "./components";
 
 const poppins = Poppins({
   weight: ["400", "700"],
@@ -25,8 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <ImageCarousel />
-        <Header />
+        <HeroBanner />
         {children}
         <Footer />
       </body>
