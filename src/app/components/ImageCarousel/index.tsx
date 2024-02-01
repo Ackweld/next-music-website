@@ -8,7 +8,7 @@ import styles from "./ImageCarousel.module.css";
 
 export const ImageCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [images, setImages] = useState<ImageAsset[] | undefined>(undefined);
+  const [images, setImages] = useState<ImageAsset[] | undefined>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -28,15 +28,14 @@ export const ImageCarousel = () => {
   }, []);
 
   const goToNextSlide = (offset: number) => {
-    const newIndex = (activeIndex + offset + 7) % 7; // Assuming there are always 3 slides
+    const newIndex = (activeIndex + offset + 7) % 7; //TODO: Magic numbers
     setActiveIndex(newIndex);
   };
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      goToNextSlide(1); // Auto-advance to the next slide every 5 seconds
+      goToNextSlide(1);
     }, 5000);
-
     return () => clearInterval(intervalId);
   }, [activeIndex]);
 
@@ -51,7 +50,7 @@ export const ImageCarousel = () => {
   return (
     <div className={styles.carousel} data-carousel>
       <ul>
-        {[0, 1, 2, 3, 4, 5, 6].map((index) => (
+        {images.map((image, index) => (
           <li
             key={index}
             className={`${styles.slide} ${
@@ -59,11 +58,13 @@ export const ImageCarousel = () => {
             }`}
           >
             <Image
-              src={`https:${images[index].fields.file.url}`}
+              src={`https:${image.fields.file.url}`}
               alt={`Slide ${index}`}
-              width={0}
-              height={0}
+              // width={1920}
+              // height={280}
+              fill
               sizes="100vw"
+              priority
             />
           </li>
         ))}

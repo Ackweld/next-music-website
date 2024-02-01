@@ -6,6 +6,7 @@ import styles from "./Biography.module.css";
 import { useEffect, useState } from "react";
 import { ApiService } from "@/app/services/ApiService";
 import { Biography } from "@/app/types";
+import Image from "next/image";
 
 export const BiographySection = () => {
   const [bio, setBio] = useState<Biography>();
@@ -21,12 +22,15 @@ export const BiographySection = () => {
   if (bio) {
     return (
       <div className={styles.card}>
-        <img
+        <Image
           src={`https:${bio.fields.profilePicture.fields.file.url}`}
           alt={`${bio.fields.profilePicture.fields.name}`}
           className={styles.profilePicture}
-          loading="lazy"
-        ></img>
+          priority={true}
+          width={670}
+          height={670}
+          sizes="100vw"
+        />
         <div className={styles.biography}>
           {documentToReactComponents(bio.fields.text)}
         </div>
