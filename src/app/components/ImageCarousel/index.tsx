@@ -1,12 +1,10 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { ApiService } from "@/app/services/ApiService";
 import { ImageAsset } from "../../types";
 import styles from "./ImageCarousel.module.css";
-import Slider from "react-slick";
 
 export const ImageCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
