@@ -1,12 +1,12 @@
 .main {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     text-align: center;
-    padding: 40px;
-    margin: 100px;
+    margin-top: 20px;
     color: white;
-    height: 100vh;
-    background-color: rgb(29, 28, 28);
+    height: 70vh;
+    padding: 20px;
 }
 
 .main label {
@@ -29,4 +29,10 @@
 .download:hover {
     color: rgb(175, 175, 175);
 }
+
+@media (max-width: 970px) {
+    .downloads {
+      font-size: smaller;
+    }
+  }
 
