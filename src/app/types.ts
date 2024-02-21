@@ -31,3 +31,22 @@ export type Biography = {
     text: Document;
   };
 };
+
+export type AudioFile = {
+  fields: {
+    title: string;
+    description: string;
+    file: {
+      url: string;
+      details: {
+        size: number;
+      };
+      fileName: string;
+      contentType: string;
+    };
+  };
+};
+
+export type AudioFiles = {
+  fields: { name: string; files: AudioFile[] };
+};

@@ -1,0 +1,15 @@
+.services {
+    background: rgb(46, 46, 46);
+    padding: 40px;
+    width: 80vw;
+    margin: 20px;
+  }
+
+.services p {
+    white-space: pre-line;  
+}
+
+.services label {
+  font-size: 30px;
+  margin-bottom: 20px;
+}

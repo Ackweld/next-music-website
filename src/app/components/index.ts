@@ -7,3 +7,4 @@ export { SpotifySection } from "./SpotifySection";
 export { EmailForm } from "./EmailForm";
 export { Footer } from "./Footer";
 export { HeroBanner } from "./HeroBanner";
+export { ServicesSection } from "./ServicesSection";

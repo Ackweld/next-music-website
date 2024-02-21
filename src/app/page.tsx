@@ -4,7 +4,6 @@ import {
   SpotifySection,
   VideoGrid,
 } from "./components";
-import { ApiService } from "@/app/services/ApiService";
 import styles from "./page.module.css";
 
 export default function Home() {
