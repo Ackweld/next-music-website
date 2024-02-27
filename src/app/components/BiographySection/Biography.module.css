@@ -1,11 +1,14 @@
 .card {
     width: 100%;
     height: auto;
-    min-height: 200px;
+    height: 700px;
+    min-height: 400px;
     display: flex;
     background: linear-gradient(180deg, rgb(26, 26, 26) 0%, rgba(0, 0, 0, 0) 90%);
+    /* background: red; */
     position: relative;
     justify-content: flex-end;
+
     margin-top: 30px;
   }
   
@@ -26,11 +29,12 @@
 .biography {
     background: rgb(46, 46, 46);
     padding: 25px;
-    width: 35%;
+    width: 50%;
     top: 10;
     right: 0;
     margin: 20px;
     z-index: 1;
+    position: absolute;
   }
 
   .card p {
@@ -62,6 +66,7 @@
       margin-left: 20px;
       margin-right: 20px;
       font-size: 90%;
+      position: relative;
     }
   }
 

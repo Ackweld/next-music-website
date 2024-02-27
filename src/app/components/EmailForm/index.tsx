@@ -32,11 +32,11 @@ export const EmailForm = () => {
       });
 
       if (!response.ok) {
-        console.log("falling over");
+        // console.log("falling over");
         throw new Error(`response status: ${response.status}`);
       }
       const responseData = await response.json();
-      console.log(responseData["message"]);
+      // console.log(responseData["message"]);
       setFormData({ name: "", email: "", message: "" });
       setSentMessage(true);
     } catch (err) {
