@@ -7,12 +7,12 @@ export const GET = async (): Promise<NextResponse<Biography>> => {
   const entries = await contentfulClient.getEntries();
   if (entries) {
     const services = entries.items.find(
-      (item: any) => item.fields.name === "services"
+      (item: any) => item.fields.name === "equipment"
     );
     if (services) {
       return NextResponse.json(services);
     } else {
-      throw new Error("Services entry not found");
+      throw new Error("Equipment entry not found");
     }
   } else {
     throw new Error("Failed to fetch entries");
