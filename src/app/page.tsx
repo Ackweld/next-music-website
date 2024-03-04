@@ -1,6 +1,7 @@
 import {
   BiographySection,
   EmailForm,
+  SoundcloudSection,
   SpotifySection,
   VideoGrid,
 } from "./components";
@@ -12,6 +13,7 @@ export default function Home() {
       <div className={styles.pageContent}>
         <BiographySection />
         <VideoGrid />
+        <SoundcloudSection />
         <SpotifySection />
         <EmailForm />
       </div>

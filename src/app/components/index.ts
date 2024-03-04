@@ -9,3 +9,4 @@ export { Footer } from "./Footer";
 export { HeroBanner } from "./HeroBanner";
 export { ServicesSection } from "./ServicesSection";
 export { EquipmentSection } from "./EquipmentSection";
+export { SoundcloudSection } from "./SoundcloudSection";
