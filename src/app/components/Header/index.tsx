@@ -7,10 +7,10 @@ export const Header = () => {
       <Link href="/" className={styles.link}>
         Home
       </Link>
-      <label>Contact me</label>
-      <Link href="/downloads" className={styles.link}>
+      {/* <label>Contact me</label> */}
+      {/* <Link href="/downloads" className={styles.link}>
         Downloads
-      </Link>
+      </Link> */}
       <Link href="/my-services" className={styles.link}>
         My Services
       </Link>
