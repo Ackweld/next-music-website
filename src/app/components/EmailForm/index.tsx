@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha"; // 🔹 Import reCAPTCHA
 import styles from "./EmailForm.module.css";
 
 export const EmailForm = () => {
@@ -9,6 +10,7 @@ export const EmailForm = () => {
     message: "",
   });
   const [sentMessage, setSentMessage] = useState(false);
+  const [captchaValue, setCaptchaValue] = useState<string | null>(null); // 🔹
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -22,22 +24,35 @@ export const EmailForm = () => {
     setSentMessage(false);
   };
 
+  const handleCaptchaChange = (value: string | null) => {
+    setCaptchaValue(value);
+  };
+
   async function handleSubmit(event: any) {
     event.preventDefault();
-    const formData = new FormData(event.target);
+
+    // 🔹 Ensure captcha was completed
+    if (!captchaValue) {
+      alert("Please verify that you're not a robot.");
+      return;
+    }
+
+    const formDataToSend = new FormData(event.target);
+    formDataToSend.append("g-recaptcha-response", captchaValue); // 🔹 send captcha token to backend
+
     try {
       const response = await fetch("/api/contact", {
         method: "post",
-        body: formData,
+        body: formDataToSend,
       });
 
       if (!response.ok) {
-        // console.log("falling over");
         throw new Error(`response status: ${response.status}`);
       }
-      const responseData = await response.json();
-      // console.log(responseData["message"]);
+
+      await response.json();
       setFormData({ name: "", email: "", message: "" });
+      setCaptchaValue(null); // 🔹 reset captcha
       setSentMessage(true);
     } catch (err) {
       console.error(err);
@@ -46,11 +61,7 @@ export const EmailForm = () => {
   }
 
   return (
-    <form
-      id="contact-form"
-      className={styles.emailForm}
-      onSubmit={handleSubmit}
-    >
+    <form id="contact-form" className={styles.emailForm} onSubmit={handleSubmit}>
       <p className={styles.contact}>Contact me</p>
       <label>
         Name:
@@ -84,6 +95,15 @@ export const EmailForm = () => {
           required
         />
       </label>
+
+      {/* 🔹 Add CAPTCHA before submit button */}
+      <div className={styles.captchaContainer}>
+        <ReCAPTCHA
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+          onChange={handleCaptchaChange}
+        />
+      </div>
+
       <div className={styles.horizontalContainer}>
         <button type="submit">SUBMIT</button>
         {sentMessage && (
