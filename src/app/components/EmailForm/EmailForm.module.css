@@ -1,73 +1,79 @@
 .emailForm {
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(29, 28, 28);
-    padding: 20px;
-    /* margin: 30px; */
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(29, 28, 28);
+  padding: 20px;
+  /* margin: 30px; */
 }
 
 .contact {
-    font-size: 30px;
+  font-size: 30px;
 }
 .emailForm label {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .emailForm input {
-    height: 30px;
-    padding: 10px;
+  height: 30px;
+  padding: 10px;
 }
 .emailForm textarea {
-    display: flex;
-    width: 100%;
-    height: 180px;
-    resize: none;
-    padding: 10px;
+  display: flex;
+  width: 100%;
+  height: 180px;
+  resize: none;
+  padding: 10px;
 }
 
 .horizontalContainer {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    /* justify-content: space-between; */
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  /* justify-content: space-between; */
 }
 .emailForm button {
-    display: flex;
-    height: 30px;
-    max-width: fit-content;    
-    color: white;
-    background-color: rgb(99, 99, 99);
-    border: none;
-    padding: 10px;
-    align-items: center;
+  display: flex;
+  height: 30px;
+  max-width: fit-content;
+  color: white;
+  background-color: rgb(99, 99, 99);
+  border: none;
+  padding: 10px;
+  align-items: center;
 }
-.emailForm button:hover { 
-    cursor: pointer;
-    color: white;
-    background-color: rgb(89, 89, 89);
+.emailForm button:hover {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(89, 89, 89);
 }
-.emailForm button:active { 
-    scale: 90%;
+.emailForm button:active {
+  scale: 90%;
 }
 
 .sentMessageLabel {
-    font-style:italic;
-    margin: 0px;
-    font-size: medium;
+  font-style: italic;
+  margin: 0px;
+  font-size: medium;
 }
 
 .captchaContainer {
-    display: flex;
-    padding-top: 10px;
-    padding-bottom: 10px;
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+
+  transform: scale(0.94);
+  -webkit-transform: scale(0.94);
+  transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
 }
 
 @media (max-width: 430px) {
-    .sentMessageLabel {
-        font-size: small;
-    }
+  .sentMessageLabel {
+    font-size: small;
+  }
 }

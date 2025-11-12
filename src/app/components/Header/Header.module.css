@@ -18,9 +18,11 @@
     font-size: medium;
 }
 .link {
-    margin: 20px;
+    /* margin: 20px; */
+    margin: 1vw;
     color: white;
-    font-size: medium;
+    /* font-size: medium; */
+    font-size: 1.3vw;
     text-decoration: none;
 }
 
@@ -64,6 +66,8 @@
     }
     .link {
         white-space: nowrap;
+        margin: 5vw;
+        font-size: medium;
     }
     .header label {
         white-space: nowrap;
