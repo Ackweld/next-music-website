@@ -10,6 +10,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
+  flex: 1;
 }
 .pageContent {
   display: flex;
