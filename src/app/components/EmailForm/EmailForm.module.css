@@ -9,7 +9,7 @@
 }
 
 .contact {
-  font-size: 30px;
+  font-size: 1.3vw;
 }
 .emailForm label {
   display: flex;
@@ -57,7 +57,7 @@
 .sentMessageLabel {
   font-style: italic;
   margin: 0px;
-  font-size: medium;
+  font-size: 0.9vw;
 }
 
 .captchaContainer {
